@@ -23,7 +23,8 @@ export class MessageService {
     this.stompClient.connect({}, function f() {
       that.stompClient.subscribe('/msg', (message) => {
         if (message.body) {
-          that.messages.push(message.body);
+          const currency = JSON.parse(message.body);
+          that.messages.push(currency.value);
         }
       });
     });
