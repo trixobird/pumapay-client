@@ -1,6 +1,6 @@
 export class Currency {
   from: string;
   to: string;
-  value: string;
-  dateTime: string | Date;
+  value: number;
+  date: string | Date;
 }
