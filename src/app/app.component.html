@@ -3,6 +3,14 @@
     {{ title }}
   </h1>
 </div>
-<app-market-chart [marketStatus]="usdStatusToPlot"></app-market-chart>
-<app-market-chart [marketStatus]="gbpStatusToPlot"></app-market-chart>
-<app-market-chart [marketStatus]="pumaStatusToPlot"></app-market-chart>
+<div>
+  <div class="row-fluid center usd">
+    <app-market-chart [marketStatus]="usdStatusToPlot"></app-market-chart>
+  </div>
+  <div class="row-fluid center gbp">
+    <app-market-chart [marketStatus]="gbpStatusToPlot"></app-market-chart>
+  </div>
+  <div class="row-fluid center puma">
+    <app-market-chart [marketStatus]="pumaStatusToPlot"></app-market-chart>
+  </div>
+</div>
