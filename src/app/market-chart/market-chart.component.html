@@ -1,1 +1,6 @@
-<div #chart></div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6" #chart></div>
+    <span class="badge" *ngIf="marketStatus[0]">{{marketStatus[0].from}}/{{marketStatus[0].to}}: {{marketStatus[0].value.toFixed(2)}}</span>
+  </div>
+</div>

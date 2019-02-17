@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Currency} from './currency';
-import {MessageService} from './message.service';
+import {MarketService} from './market.service';
 
 @Component({
   selector: 'app-root',
@@ -8,25 +8,23 @@ import {MessageService} from './message.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'msg-client';
-  marketStatus: Currency[];
-  marketStatusToPlot: Currency[];
+  title = 'Real Time Currencies';
+  usdStatus: Currency[];
+  usdStatusToPlot: Currency[];
 
-  set MarketStatus(status: Currency[]) {
-    this.marketStatus = status;
-    this.marketStatusToPlot = this.marketStatus.slice(0, 20);
+  set UsdStatus(status: Currency[]) {
+    this.usdStatus = status;
+    this.usdStatusToPlot = this.usdStatus.slice(0, 20);
   }
 
-  constructor(private marketStatusSvc: MessageService) {
-    MessageService.getInitialMarketStatus()
-      .subscribe(() => {
-        this.MarketStatus = [];
+  constructor(private marketService: MarketService) {
 
-        const marketUpdateObservable = this.marketStatusSvc.getUpdates();  // 1
-        marketUpdateObservable.subscribe((latestStatus: Currency) => {  // 2
-          this.MarketStatus = [latestStatus].concat(this.marketStatus);  // 3
-        });  // 4
-      });
+    this.UsdStatus = [];
+
+    const usdMarketUpdateObservable = this.marketService.getUpdates('USD');
+    usdMarketUpdateObservable.subscribe((latestStatus: Currency) => {
+      this.UsdStatus = [latestStatus].concat(this.usdStatus);
+    });
   }
 }
 
